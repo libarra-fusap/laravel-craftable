@@ -70,6 +70,3 @@ http://localhost:${DOCKER_HTTP_PORT}
 
 Project is: _development_
 
-## Contact
-
-Developed by [libarra@fusap.com.ar](mailto:libarra@fusap.com.ar) - feel free to contact me!
