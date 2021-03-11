@@ -8,6 +8,10 @@
 	* [Dependencies](#dependencies)
 	* [Enviroment variables](#enviroment-variables)
 	* [Docker](#docker)
+		* [Create Containers](#create-containers)
+		* [App](#app)
+		* [Node.js](#node-js)
+		* [Access App](#access-app)
 * [Status](#status)
 * [Contact](#contact)
 
@@ -17,7 +21,7 @@ Based on Laravel Framework and Craftable package.
 ## Technologies
 * [Laravel](https://laravel.com/docs/6.x) - 6.20
 * [Craftable](https://www.getcraftable.com/docs/5.0/about) - 5.0
-* Node - 12.20.0
+* Node - 14.15.4
 * MySQL - 5.7.31
 
 ## Setup
@@ -30,7 +34,7 @@ Specifications to setup de project.
 * Debian Buster / Ubuntu 20.04. Libraries:
 	*  git, libfreetype6-dev, libjpeg-dev, libzip-dev, unzip, zip
 * MySQL 5.7.31
-* npm - 6.14.8
+* npm - 6.14.10
 
 ### Enviroment variables
 
@@ -38,27 +42,57 @@ Copy `.env.example` to `.env` and replace enviroment variables accordingly. `DB_
 
 ### Docker
 
+#### Create containers
+
 Run [docker-compose](https://docs.docker.com/compose/install/) to setup the enviroment. Enviroment variables in `.env` file have to be set.
 
-```
-docker-compose up -d
-```
+#### App
 
-Enter `laravel-craftable` container to install PHP dependencies with composer.
+Enter `laravel-craftable` container.
 
 ```
-docker exec -ti dataset bash
+docker exec -ti laravel-craftable bash
+```
+
+Install dependencies with `composer`.
+
+```
 composer install
 ```
 
-Enter `node12` container to install Node dependencies with npm and compile assets.
+Setup encyption key.
 
 ```
-docker exec -ti node12 bash
+php artisan key:generate
+```
+
+Run migrations.
+
+```
+php artisan craftable:install
+```
+
+#### Node.js
+
+Enter `node-craftable` container.
+
+```
+docker exec -ti node-craftable bash
+```
+
+Install dependencies with `npm`.
+
+```
 npm install
-npm run dev
+```
+
+Compile assets
+
+```
 npm run dev
 ```
+
+#### Access App
 
 Check project health status
 
