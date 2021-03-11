@@ -72,6 +72,12 @@ Run migrations.
 php artisan craftable:install
 ```
 
+Copy Admin password from console log. It is also stored as plain text at
+
+```
+database/migrations/<date_of_migration>_fill_default_admin_user_and_permissions.php
+```
+
 #### Node.js
 
 Enter `node-craftable` container.
